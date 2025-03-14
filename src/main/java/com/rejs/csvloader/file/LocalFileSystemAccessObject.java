@@ -2,6 +2,7 @@ package com.rejs.csvloader.file;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 
+@Component
 public class LocalFileSystemAccessObject implements FileSystemAccessObject {
     private static String ROOT = "files/";
 
