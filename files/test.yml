@@ -1,0 +1,24 @@
+works:
+  work:
+    - tableName: "test_users"
+      columns:
+        - name: "name"
+          csvIndex: 0
+          type: STRING
+          validationType: NOTBLANK
+        - name: "email"
+          csvIndex: 1
+          type: STRING
+          validationType: "EMAIL"
+        - name: "age"
+          csvIndex: 2
+          type: LONG
+        - name: "test_korean"
+          csvIndex: 3
+          type: STRING
+
+database:
+  host: "jdbc:postgresql://localhost:5432/mydatabase"
+  username: "myuser"
+  password: "secret"
+  driver: "org.postgresql.Driver"
