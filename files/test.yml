@@ -3,18 +3,19 @@ works:
     columns:
       - name: "name"
         csvIndex: 0
-        type: STRING
-        validationType: NOTBLANK
+        type: String
+        validationType: NotBlank
       - name: "email"
         csvIndex: 1
-        type: STRING
-        validationType: "EMAIL"
+        type: String
+        validationType: Email
       - name: "age"
         csvIndex: 2
-        type: LONG
+        type: Integer
+        validationType: PositiveInteger
       - name: "test_korean"
         csvIndex: 3
-        type: STRING
+        type: String
 
 database:
   host: "jdbc:postgresql://localhost:5432/mydatabase"
