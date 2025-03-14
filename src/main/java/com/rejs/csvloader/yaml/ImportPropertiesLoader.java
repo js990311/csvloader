@@ -20,11 +20,11 @@ public class ImportPropertiesLoader {
 
     public ImportProperties loadProperties(String filename){
         Resource file = fileSAO.load(filename);
-        Yaml yaml = new Yaml(new Constructor(ImportProperties.class, new LoaderOptions()));
 
+        Yaml yaml = new Yaml(new Constructor(ImportProperties.class, new LoaderOptions()));
         try(InputStream inputStream = file.getInputStream()){
             return yaml.load(inputStream);
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
             throw new YamlPropertiesLoadFailException(e);
         }
 

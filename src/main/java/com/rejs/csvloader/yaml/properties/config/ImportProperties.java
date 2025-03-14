@@ -12,5 +12,5 @@ import java.util.List;
 @Setter
 public class ImportProperties {
     private List<ImportWork> works;
-    private DatabaseProperties databaseProperties;
+    private DatabaseProperties database;
 }
