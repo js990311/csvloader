@@ -2,13 +2,13 @@ package com.rejs.csvloader.validator.impl;
 
 import com.rejs.csvloader.validator.CsvColumnValidator;
 import com.rejs.csvloader.validator.exception.InvalidCsvColumnException;
-import com.rejs.csvloader.yaml.properties.model.ImportColumn;
+import com.rejs.csvloader.yaml.properties.model.ColumnProperty;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PositiveIntegerValidator implements CsvColumnValidator {
     @Override
-    public Object validate(String column, ImportColumn property) {
+    public Object validate(String column, ColumnProperty property) {
         try{
             int number = Integer.parseInt(column);
             if(number<=0){

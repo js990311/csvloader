@@ -1,7 +1,7 @@
 package com.rejs.csvloader.validator;
 
 import com.rejs.csvloader.validator.exception.InvalidCsvColumnException;
-import com.rejs.csvloader.yaml.properties.model.ImportColumn;
+import com.rejs.csvloader.yaml.properties.model.ColumnProperty;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class CsvColumnValidateService {
         return new CsvParser(settings);
     }
 
-    public CsvColumnValidationResult validate(List<ImportColumn> columns, Resource resource){
+    public CsvColumnValidationResult validate(List<ColumnProperty> columns, Resource resource){
         CsvParser parser = getCsvParser();
         CsvColumnValidationResult result = new CsvColumnValidationResult();
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))){
@@ -33,7 +33,7 @@ public class CsvColumnValidateService {
                 try { // 현재 행이 추출되고 있는가?
                     int idx = 0;
                     Object[] objects = new Object[columns.size()];
-                    for(ImportColumn column : columns){
+                    for(ColumnProperty column : columns){
                         objects[idx] = extract(row[column.getCsvIndex()], column);
                         idx++;
                     }
@@ -52,7 +52,7 @@ public class CsvColumnValidateService {
         return result;
     }
 
-    private Object extract(String s, ImportColumn property) {
+    private Object extract(String s, ColumnProperty property) {
         String type = property.getType();
         if(property.getValidationType() != null){
             type = property.getValidationType();

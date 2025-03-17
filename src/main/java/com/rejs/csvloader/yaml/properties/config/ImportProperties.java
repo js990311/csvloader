@@ -1,6 +1,6 @@
 package com.rejs.csvloader.yaml.properties.config;
 
-import com.rejs.csvloader.yaml.properties.model.ImportWork;
+import com.rejs.csvloader.yaml.properties.model.WorkProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 public class ImportProperties {
-    private List<ImportWork> works;
+    private List<WorkProperty> works;
     private DatabaseProperties database;
 }

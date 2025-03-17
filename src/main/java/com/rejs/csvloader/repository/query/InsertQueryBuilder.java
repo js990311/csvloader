@@ -1,12 +1,11 @@
 package com.rejs.csvloader.repository.query;
 
-import com.rejs.csvloader.yaml.properties.model.ImportColumn;
-import com.rejs.csvloader.yaml.properties.model.ImportWork;
+import com.rejs.csvloader.yaml.properties.model.WorkProperty;
 import org.springframework.stereotype.Component;
 
 @Component
 public class InsertQueryBuilder {
-    public String buildInsertQuery(ImportWork work){
+    public String buildInsertQuery(WorkProperty work){
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO ").append(work.getTableName());
         sb.append("(");

@@ -6,12 +6,11 @@ import com.rejs.csvloader.file.LocalFileSystemAccessObject;
 import com.rejs.csvloader.repository.query.InsertQueryBuilder;
 import com.rejs.csvloader.validator.CsvColumnValidateService;
 import com.rejs.csvloader.validator.CsvColumnValidationResult;
-import com.rejs.csvloader.validator.CsvColumnValidator;
 import com.rejs.csvloader.yaml.ImportPropertiesLoader;
 import com.rejs.csvloader.yaml.properties.config.DatabaseProperties;
 import com.rejs.csvloader.yaml.properties.config.ImportProperties;
-import com.rejs.csvloader.yaml.properties.model.ImportColumn;
-import com.rejs.csvloader.yaml.properties.model.ImportWork;
+import com.rejs.csvloader.yaml.properties.model.ColumnProperty;
+import com.rejs.csvloader.yaml.properties.model.WorkProperty;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,12 +19,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.shaded.org.checkerframework.checker.units.qual.A;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @Import(TestcontainersConfiguration.class)
@@ -70,10 +65,10 @@ class JdbcBatchInsertRepositoryTest {
             );
         """);
 
-        for(ImportWork work : properties.getWorks()){
+        for(WorkProperty work : properties.getWorks()){
             String query = insertQueryBuilder.buildInsertQuery(work);
 
-            List<ImportColumn> columns = work.getColumns();
+            List<ColumnProperty> columns = work.getColumns();
             CsvColumnValidationResult result = validateService.validate(columns, data);
 
             List<Object[]> datas = result.getValidDatas();

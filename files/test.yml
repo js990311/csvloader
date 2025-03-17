@@ -9,11 +9,13 @@ works:
       - name: "email"
         csvIndex: 1
         type: String
-        validationType: Email
+        constraints:
+          regex: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
       - name: "age"
         csvIndex: 2
         type: Integer
-        validationType: PositiveInteger
+        constraints:
+          min: 1
       - name: "test_korean"
         csvIndex: 3
         type: String

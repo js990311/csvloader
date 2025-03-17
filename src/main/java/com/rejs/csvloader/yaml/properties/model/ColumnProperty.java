@@ -7,12 +7,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ImportColumn {
+public class ColumnProperty {
     private String name;
     private String type;
     private Integer csvIndex;
     private String validationType;
     private Boolean nullable;
+    private ConstraintsProperty constraints;
 
     public void setNullable(boolean nullable) {
         this.nullable = nullable;

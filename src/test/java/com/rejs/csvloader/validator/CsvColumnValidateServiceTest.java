@@ -30,7 +30,7 @@ class CsvColumnValidateServiceTest {
 
         CsvColumnValidationResult result = validateService.validate(properties.getWorks().get(0).getColumns(), data);
         assertNotNull(result);
-        assertEquals(5, result.getValidDatas().size());
+        assertEquals(6, result.getValidDatas().size());
         assertEquals(3, result.getInValidData().size());
 
     }

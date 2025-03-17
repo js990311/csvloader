@@ -1,7 +1,7 @@
 package com.rejs.csvloader.repository;
 
 import com.rejs.csvloader.repository.setter.JdbcTypeSetter;
-import com.rejs.csvloader.yaml.properties.model.ImportColumn;
+import com.rejs.csvloader.yaml.properties.model.ColumnProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,7 +18,7 @@ import java.util.List;
 public class JdbcBatchInsertRepository {
     private final List<JdbcTypeSetter> statementSetters;
 
-    public void batchInsert(JdbcTemplate jdbcTemplate, String insertQuery, List<Object[]> datas, List<ImportColumn> columns){
+    public void batchInsert(JdbcTemplate jdbcTemplate, String insertQuery, List<Object[]> datas, List<ColumnProperty> columns){
         int batchSize = 256;
         for(int i=0;i< datas.size();i +=batchSize){
             int end = Math.min(i+ batchSize, datas.size());
@@ -26,13 +26,13 @@ public class JdbcBatchInsertRepository {
         }
     }
 
-    protected void insert(JdbcTemplate jdbcTemplate, String insertQuery, List<Object[]> datas, List<ImportColumn> columns){
+    protected void insert(JdbcTemplate jdbcTemplate, String insertQuery, List<Object[]> datas, List<ColumnProperty> columns){
         jdbcTemplate.batchUpdate(insertQuery, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 Object[] data = datas.get(i);
                 int idx = 0;
-                for(ImportColumn column : columns){
+                for(ColumnProperty column : columns){
                     if(data[idx] == null){
                         ps.setString(idx+1, null);
                     }else {

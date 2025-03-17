@@ -4,12 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @NoArgsConstructor
 @Getter
 @Setter
-public class ImportWork {
-    private String tableName;
-    private List<ImportColumn> columns;
+public class ConstraintsProperty {
+    private String regex;
+    private Long min;
+    private Long max;
 }

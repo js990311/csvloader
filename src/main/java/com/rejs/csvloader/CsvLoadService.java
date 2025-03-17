@@ -9,8 +9,8 @@ import com.rejs.csvloader.validator.CsvColumnValidateService;
 import com.rejs.csvloader.validator.CsvColumnValidationResult;
 import com.rejs.csvloader.yaml.ImportPropertiesLoader;
 import com.rejs.csvloader.yaml.properties.config.ImportProperties;
-import com.rejs.csvloader.yaml.properties.model.ImportColumn;
-import com.rejs.csvloader.yaml.properties.model.ImportWork;
+import com.rejs.csvloader.yaml.properties.model.ColumnProperty;
+import com.rejs.csvloader.yaml.properties.model.WorkProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -36,10 +36,10 @@ public class CsvLoadService implements CommandLineRunner {
         Resource data = fao.load(csv);
         JdbcTemplate jdbcTemplate = jdbcTemplateProvider.createJdbcTemplate(properties.getDatabase());
 
-        for(ImportWork work : properties.getWorks()){
+        for(WorkProperty work : properties.getWorks()){
             String query = insertQueryBuilder.buildInsertQuery(work);
 
-            List<ImportColumn> columns = work.getColumns();
+            List<ColumnProperty> columns = work.getColumns();
             CsvColumnValidationResult result = validateService.validate(columns, data);
 
             List<Object[]> datas = result.getValidDatas();
