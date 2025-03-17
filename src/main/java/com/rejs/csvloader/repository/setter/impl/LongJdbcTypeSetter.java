@@ -10,14 +10,11 @@ import java.sql.SQLException;
 public class LongJdbcTypeSetter implements JdbcTypeSetter {
     @Override
     public void set(PreparedStatement ps, int index, Object o) throws SQLException {
-        if(o == null){
-            return;
-        }
         ps.setLong(index, (Long) o);
     }
 
     @Override
     public boolean support(String type) {
-        return type.equals("LONG");
+        return type.equals("Long");
     }
 }

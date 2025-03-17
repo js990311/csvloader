@@ -7,14 +7,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @Component
-public class StringJdbcTypeSetter implements JdbcTypeSetter {
+public class IntegerJdbcTypeSetter implements JdbcTypeSetter {
     @Override
     public void set(PreparedStatement ps, int index, Object o) throws SQLException {
-        ps.setString(index, (String) o);
+        ps.setInt(index, (Integer) o);
     }
 
     @Override
     public boolean support(String type) {
-        return type.equals("String");
+        return type.equals("Integer");
     }
+
 }
