@@ -12,6 +12,7 @@ import com.rejs.csvloader.yaml.properties.config.ImportProperties;
 import com.rejs.csvloader.yaml.properties.model.ImportColumn;
 import com.rejs.csvloader.yaml.properties.model.ImportWork;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class CsvLoadService {
+public class CsvLoadService implements CommandLineRunner {
     private final InsertQueryBuilder insertQueryBuilder;
     private final ImportPropertiesLoader loader;
     private final FileSystemAccessObject fao = new LocalFileSystemAccessObject();
@@ -44,4 +45,15 @@ public class CsvLoadService {
         }
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        if(args.length < 2){
+            throw new IllegalArgumentException("we need 2 parameter");
+        }
+
+        String ymlPath = args[0];
+        String csvPath = args[1];
+
+        load(ymlPath, csvPath);
+    }
 }
