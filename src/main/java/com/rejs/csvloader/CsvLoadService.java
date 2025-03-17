@@ -13,12 +13,14 @@ import com.rejs.csvloader.yaml.properties.model.ImportColumn;
 import com.rejs.csvloader.yaml.properties.model.ImportWork;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Profile("!test")
 @RequiredArgsConstructor
 @Service
 public class CsvLoadService implements CommandLineRunner {

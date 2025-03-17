@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.shaded.org.checkerframework.checker.units.qual.A;
 
@@ -26,6 +27,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ActiveProfiles("test")
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
 class JdbcBatchInsertRepositoryTest {
