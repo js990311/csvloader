@@ -5,6 +5,7 @@ works:
         csvIndex: 0
         type: String
         validationType: NotBlank
+        nullable: false
       - name: "email"
         csvIndex: 1
         type: String

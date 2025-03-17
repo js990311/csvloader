@@ -28,10 +28,10 @@ class CsvColumnValidateServiceTest {
         ImportProperties properties = loader.loadProperties("test.yml");
         Resource data = fao.load("test.csv");
 
-        CsvColumnValidationResult validate = validateService.validate(properties.getWorks().get(0).getColumns(), data);
-        assertNotNull(validate);
-        assertEquals(5, validate.getValidDatas().size());
-        assertEquals(3, validate.getInValidData().size());
+        CsvColumnValidationResult result = validateService.validate(properties.getWorks().get(0).getColumns(), data);
+        assertNotNull(result);
+        assertEquals(5, result.getValidDatas().size());
+        assertEquals(3, result.getInValidData().size());
 
     }
 }

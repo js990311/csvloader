@@ -5,6 +5,7 @@ import com.rejs.csvloader.file.LocalFileSystemAccessObject;
 import com.rejs.csvloader.yaml.exception.YamlPropertiesLoadFailException;
 import com.rejs.csvloader.yaml.properties.config.DatabaseProperties;
 import com.rejs.csvloader.yaml.properties.config.ImportProperties;
+import com.rejs.csvloader.yaml.properties.model.ImportColumn;
 import com.rejs.csvloader.yaml.properties.model.ImportWork;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,9 @@ class ImportPropertiesLoaderTest {
         ImportWork work = properties.getWorks().get(0);
         assertEquals("test_users", work.getTableName());
         assertEquals(4, work.getColumns().size());
+
+        assertEquals(false, work.getColumns().get(0).isNullable());
+        assertEquals(true, work.getColumns().get(3).isNullable());
 
         assertEquals("jdbc:postgresql://localhost:5432/mydatabase", properties.getDatabase().getHost());
         assertEquals("myuser", properties.getDatabase().getUsername());

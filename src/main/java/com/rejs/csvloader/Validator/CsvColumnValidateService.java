@@ -34,11 +34,7 @@ public class CsvColumnValidateService {
                     int idx = 0;
                     Object[] objects = new Object[columns.size()];
                     for(ImportColumn column : columns){
-                        String type = column.getType();
-                        if(column.getValidationType() != null){
-                            type = column.getValidationType();
-                        }
-                        objects[idx] = extract(row[column.getCsvIndex()], type);
+                        objects[idx] = extract(row[column.getCsvIndex()], column);
                         idx++;
                     }
                     result.addValidData(objects);
@@ -56,10 +52,14 @@ public class CsvColumnValidateService {
         return result;
     }
 
-    private Object extract(String s, String type) {
+    private Object extract(String s, ImportColumn property) {
+        String type = property.getType();
+        if(property.getValidationType() != null){
+            type = property.getValidationType();
+        }
         for (CsvColumnValidator validator : validators){
             if(validator.support(type)){
-                return validator.validate(s);
+                return validator.validate(s, property);
             }
         }
         throw new InvalidCsvColumnException();

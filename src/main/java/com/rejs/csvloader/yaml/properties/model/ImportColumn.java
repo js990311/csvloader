@@ -12,4 +12,13 @@ public class ImportColumn {
     private String type;
     private Integer csvIndex;
     private String validationType;
+    private Boolean nullable;
+
+    public void setNullable(boolean nullable) {
+        this.nullable = nullable;
+    }
+
+    public boolean isNullable() {
+        return nullable == null || nullable;
+    }
 }
