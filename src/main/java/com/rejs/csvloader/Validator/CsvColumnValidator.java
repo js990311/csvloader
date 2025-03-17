@@ -1,4 +1,4 @@
-package com.rejs.csvloader.Validator;
+package com.rejs.csvloader.validator;
 
 public interface CsvColumnValidator {
     Object validate(String column);

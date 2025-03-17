@@ -1,9 +1,7 @@
-package com.rejs.csvloader.Validator;
+package com.rejs.csvloader.validator;
 
-import com.rejs.csvloader.Validator.exception.InvalidCsvColumnException;
-import org.junit.jupiter.api.Assertions;
+import com.rejs.csvloader.validator.exception.InvalidCsvColumnException;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;

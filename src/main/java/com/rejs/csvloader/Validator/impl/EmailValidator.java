@@ -1,7 +1,7 @@
-package com.rejs.csvloader.Validator.impl;
+package com.rejs.csvloader.validator.impl;
 
-import com.rejs.csvloader.Validator.CsvColumnValidator;
-import com.rejs.csvloader.Validator.exception.InvalidCsvColumnException;
+import com.rejs.csvloader.validator.CsvColumnValidator;
+import com.rejs.csvloader.validator.exception.InvalidCsvColumnException;
 import org.springframework.stereotype.Component;
 
 @Component

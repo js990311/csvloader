@@ -1,4 +1,4 @@
-package com.rejs.csvloader.Validator.exception;
+package com.rejs.csvloader.validator.exception;
 
 import lombok.Getter;
 
