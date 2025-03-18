@@ -20,20 +20,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Profile("!test")
 @RequiredArgsConstructor
 @Service
-public class CsvLoadService implements CommandLineRunner {
+public class CsvLoadService {
     private final InsertQueryBuilder insertQueryBuilder;
-    private final ImportPropertiesLoader loader;
-    private final FileSystemAccessObject fao = new LocalFileSystemAccessObject();
     private final CsvColumnValidateService validateService;
     private final JdbcBatchInsertRepository jdbcBatchInsertRepository;
     private final JdbcTemplateProvider jdbcTemplateProvider;
 
-    public void load(String yml, String csv){
-        ImportProperties properties = loader.loadProperties(yml);
-        Resource data = fao.load(csv);
+    public void load(ImportProperties properties, Resource data){
         JdbcTemplate jdbcTemplate = jdbcTemplateProvider.createJdbcTemplate(properties.getDatabase());
 
         for(WorkProperty work : properties.getWorks()){
@@ -45,17 +40,5 @@ public class CsvLoadService implements CommandLineRunner {
             List<Object[]> datas = result.getValidDatas();
             jdbcBatchInsertRepository.batchInsert(jdbcTemplate, query, datas, columns);
         }
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        if(args.length < 2){
-            throw new IllegalArgumentException("we need 2 parameter");
-        }
-
-        String ymlPath = args[0];
-        String csvPath = args[1];
-
-        load(ymlPath, csvPath);
     }
 }
