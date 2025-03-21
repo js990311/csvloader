@@ -11,4 +11,5 @@ public class ConstraintsProperty {
     private String regex;
     private Long min;
     private Long max;
+    private EnumProperty enums;
 }

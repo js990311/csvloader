@@ -4,7 +4,6 @@ works:
       - name: "name"
         csvIndex: 0
         type: String
-        validationType: NotBlank
         nullable: false
       - name: "email"
         csvIndex: 1
@@ -19,6 +18,14 @@ works:
       - name: "test_korean"
         csvIndex: 3
         type: String
+      - name: "test_enum"
+        csvIndex: 4
+        type: String
+        constraints:
+          enums:
+            mappings:
+              "1" : "MALE"
+              "2" : "FEMALE"
 
 database:
   host: "jdbc:postgresql://localhost:5432/mydatabase"

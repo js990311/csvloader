@@ -21,17 +21,29 @@ class ImportPropertiesLoaderTest {
         assertEquals(1, properties.getWorks().size());
 
         WorkProperty work = properties.getWorks().get(0);
-        assertEquals("test_users", work.getTableName());
-        assertEquals(4, work.getColumns().size());
 
+        // 테이블네임이 제대로 되는지
+        assertEquals("test_users", work.getTableName());
+
+        // 5개의 컬럼이 다 있는지
+        assertEquals(5, work.getColumns().size());
+
+        // nullable 프로퍼티 검사
         assertEquals(false, work.getColumns().get(0).isNullable());
         assertEquals(true, work.getColumns().get(3).isNullable());
 
+        // regex 제약조건이 있는지
         assertNotNull(work.getColumns().get(1).getConstraints().getRegex());
 
+        // min값 속성이 제대로 저장되는지
         assertNotNull(work.getColumns().get(2).getConstraints().getMin());
         assertEquals(1, work.getColumns().get(2).getConstraints().getMin());
 
+        // enumMappings가 제대로 있는지
+        assertNotNull(work.getColumns().get(4).getConstraints().getEnums());
+        assertEquals(2, work.getColumns().get(4).getConstraints().getEnums().getMappings().keySet().size());
+
+        // database 속성이 제대로 저장되는지
         assertEquals("jdbc:postgresql://localhost:5432/mydatabase", properties.getDatabase().getHost());
         assertEquals("myuser", properties.getDatabase().getUsername());
         assertEquals("secret", properties.getDatabase().getPassword());
