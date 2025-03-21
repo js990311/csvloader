@@ -14,7 +14,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 
-@Component
 public class LocalFileSystemAccessObject implements FileSystemAccessObject {
     private static String ROOT = "files/";
 

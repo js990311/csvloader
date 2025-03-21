@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @RequiredArgsConstructor
-@Component
 public class ImportPropertiesLoader {
     private final FileSystemAccessObject fileSAO;
 

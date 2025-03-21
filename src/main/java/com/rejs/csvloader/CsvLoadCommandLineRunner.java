@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class CsvLoadCommandLineRunner implements CommandLineRunner {
     private final CsvLoadService csvLoadService;
     private final ImportPropertiesLoader loader;
-    private final FileSystemAccessObject fao = new LocalFileSystemAccessObject();
+    private final FileSystemAccessObject fao;
 
     @Override
     public void run(String... args) throws Exception {
