@@ -1,5 +1,6 @@
 package com.rejs.csvloader.config.configurer;
 
+import com.rejs.csvloader.repository.setter.JdbcTypeSetter;
 import com.rejs.csvloader.repository.setter.impl.IntegerJdbcTypeSetter;
 import com.rejs.csvloader.repository.setter.impl.LongJdbcTypeSetter;
 import com.rejs.csvloader.repository.setter.impl.StringJdbcTypeSetter;
@@ -14,6 +15,12 @@ import java.util.List;
 
 public class CsvColumnValidateServiceConfigurer implements CsvLoadConfigurer{
     private List<CsvColumnValidator> validators = new ArrayList<>();
+
+    public CsvColumnValidateServiceConfigurer custom(CsvColumnValidator... validators){
+        this.validators.addAll(List.of(validators));
+        return this;
+    }
+
 
     public CsvColumnValidateServiceConfigurer withDefault(){
         validators.addAll(List.of(

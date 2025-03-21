@@ -15,6 +15,11 @@ import java.util.List;
 public class JdbcBatchInsertRepositoryConfigurer implements CsvLoadConfigurer{
     private List<JdbcTypeSetter> setters = new ArrayList<>();
 
+    public JdbcBatchInsertRepositoryConfigurer custom(JdbcTypeSetter... setters){
+        this.setters.addAll(List.of(setters));
+        return this;
+    }
+
     public JdbcBatchInsertRepositoryConfigurer withDefault(){
         setters.addAll(List.of(
                 new LongJdbcTypeSetter(),
