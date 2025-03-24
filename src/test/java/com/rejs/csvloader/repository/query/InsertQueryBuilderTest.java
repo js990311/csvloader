@@ -19,4 +19,11 @@ class InsertQueryBuilderTest {
         String query = importQueryBuilder.buildInsertQuery(properties.getWorks().get(0));
         assertNotEquals("INSERT test_users(name, email, age, test_korean) VALUES (?, ?, ?, ?);", query);
     }
+
+    @Test
+    void buildInsertQueryWithQueryProperty(){
+        ImportProperties properties = loader.loadProperties("test2.yml");
+        String query = importQueryBuilder.buildInsertQuery(properties.getWorks().get(0));
+        assertEquals("INSERT test_points(name, longitude, latitude, lng, lat) VALUES (?,?,?,?,?)", query);
+    }
 }

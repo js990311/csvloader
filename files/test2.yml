@@ -1,6 +1,6 @@
 works:
   - tableName: "test_points"
-    insertQuery: "INSERT test_points(name, longitude, latitude) VALUES (?,?,?)"
+    insertQuery: "INSERT test_points(name, longitude, latitude, lng, lat) VALUES (?,?,?,?,?)"
     columns:
       - name: "name"
         csvIndex: 0

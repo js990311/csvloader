@@ -57,7 +57,7 @@ class ImportPropertiesLoaderTest {
         ImportProperties properties = importPropertiesLoader.loadProperties("test2.yml");
         WorkProperty work = properties.getWorks().get(0);
         assertNotNull(work.getInsertQuery());
-        assertEquals("INSERT test_points(name, longitude, latitude) VALUES (?,?,?)", work.getInsertQuery());
+        assertEquals("INSERT test_points(name, longitude, latitude, lng, lat) VALUES (?,?,?,?,?)", work.getInsertQuery());
 
         List<Integer> insertIndexes = work.getColumns().get(2).getInsertIndexes();
         assertEquals(2, insertIndexes.size());

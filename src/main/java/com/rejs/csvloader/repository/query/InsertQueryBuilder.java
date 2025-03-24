@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class InsertQueryBuilder {
     public String buildInsertQuery(WorkProperty work){
+        if(work.getInsertQuery() != null){
+            /* insertQuery가 수동으로 지정되었다면 사용 */
+            return work.getInsertQuery();
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO ").append(work.getTableName());
         sb.append("(");
