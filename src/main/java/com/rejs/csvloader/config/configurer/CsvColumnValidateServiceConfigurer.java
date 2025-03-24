@@ -6,9 +6,7 @@ import com.rejs.csvloader.repository.setter.impl.LongJdbcTypeSetter;
 import com.rejs.csvloader.repository.setter.impl.StringJdbcTypeSetter;
 import com.rejs.csvloader.validator.CsvColumnValidateService;
 import com.rejs.csvloader.validator.CsvColumnValidator;
-import com.rejs.csvloader.validator.impl.IntegerValidator;
-import com.rejs.csvloader.validator.impl.LongValidatior;
-import com.rejs.csvloader.validator.impl.StringValidator;
+import com.rejs.csvloader.validator.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,9 @@ public class CsvColumnValidateServiceConfigurer implements CsvLoadConfigurer{
         validators.addAll(List.of(
                 new LongValidatior(),
                 new IntegerValidator(),
-                new StringValidator()
+                new StringValidator(),
+                new DoubleValidator(),
+                new EnumValidator()
         ));
         return this;
     }

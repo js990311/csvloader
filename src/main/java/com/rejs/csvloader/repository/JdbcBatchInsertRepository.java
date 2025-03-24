@@ -1,5 +1,6 @@
 package com.rejs.csvloader.repository;
 
+import com.rejs.csvloader.repository.exception.NotFoundTypeSetterException;
 import com.rejs.csvloader.repository.setter.JdbcTypeSetter;
 import com.rejs.csvloader.yaml.properties.model.ColumnProperty;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class JdbcBatchInsertRepository {
                         }else {
                             String type = column.getType();
                             JdbcTypeSetter setter = getSetter(type);
-                            setter.set(ps, insertIndex+1, data[idx]);
+                            setter.set(ps, insertIndex, data[idx]);
                         }
                     }
                     idx++;
@@ -66,7 +67,7 @@ public class JdbcBatchInsertRepository {
             }
         }
         // TODO
-        throw new RuntimeException();
+        throw new NotFoundTypeSetterException(type);
     }
 
 }

@@ -6,6 +6,7 @@ import com.rejs.csvloader.file.LocalFileSystemAccessObject;
 import com.rejs.csvloader.yaml.ImportPropertiesLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * CsvLoadCommandLineRunner 빈 등록
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AbstractCsvLoadCommandLineRunnerConfiguration extends AbstractCsvLoadConfiguration{
 
+    @Profile("!test")
     @Bean
     public CsvLoadCommandLineRunner csvLoadCommandLineRunner(){
         return new CsvLoadCommandLineRunner(csvLoadService(), importPropertiesLoader(), fileSystemAccessObject());

@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-@Profile("!test")
 @RequiredArgsConstructor
-@Component
 public class CsvLoadCommandLineRunner implements CommandLineRunner {
     private final CsvLoadService csvLoadService;
     private final ImportPropertiesLoader loader;

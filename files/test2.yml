@@ -9,7 +9,7 @@ works:
         lat DOUBLE PRECISION
       );
   - tableName: "test_points"
-    insertQuery: "INSERT test_points(name, longitude, latitude, lng, lat) VALUES (?,?,?,?,?)"
+    insertQuery: "INSERT INTO test_points(name, longitude, latitude, lng, lat) VALUES (?,?,?,?,?)"
     columns:
       - name: "name"
         csvIndex: 0

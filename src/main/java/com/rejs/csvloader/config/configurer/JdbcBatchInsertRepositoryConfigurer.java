@@ -2,6 +2,7 @@ package com.rejs.csvloader.config.configurer;
 
 import com.rejs.csvloader.repository.JdbcBatchInsertRepository;
 import com.rejs.csvloader.repository.setter.JdbcTypeSetter;
+import com.rejs.csvloader.repository.setter.impl.DoubleJdbcTypeSetter;
 import com.rejs.csvloader.repository.setter.impl.IntegerJdbcTypeSetter;
 import com.rejs.csvloader.repository.setter.impl.LongJdbcTypeSetter;
 import com.rejs.csvloader.repository.setter.impl.StringJdbcTypeSetter;
@@ -24,7 +25,8 @@ public class JdbcBatchInsertRepositoryConfigurer implements CsvLoadConfigurer{
         setters.addAll(List.of(
                 new LongJdbcTypeSetter(),
                 new IntegerJdbcTypeSetter(),
-                new StringJdbcTypeSetter()
+                new StringJdbcTypeSetter(),
+                new DoubleJdbcTypeSetter()
         ));
         return this;
     }

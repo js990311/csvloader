@@ -76,6 +76,28 @@ class JdbcBatchInsertRepositoryTest {
         }
     }
 
+    @Test
+    void batchInsertTest2(){
+        ImportProperties properties = loader.loadProperties("test2.yml");
+        Resource data = fao.load("test2.csv");
+        JdbcTemplate jdbcTemplate = createJdbcTemplate(properties.getDatabase());
+
+        for(WorkProperty work : properties.getWorks()){
+            if(work.getExecuteQuery() != null){
+                jdbcTemplate.execute(work.getExecuteQuery());
+            }else {
+                String query = insertQueryBuilder.buildInsertQuery(work);
+
+                List<ColumnProperty> columns = work.getColumns();
+                CsvColumnValidationResult result = validateService.validate(columns, data);
+
+                List<Object[]> datas = result.getValidDatas();
+                jdbcBatchInsertRepository.batchInsert(jdbcTemplate, query, datas, columns);
+            }
+        }
+
+    }
+
     private JdbcTemplate createJdbcTemplate(DatabaseProperties properties){
         DatabaseProperties databaseProperties = new DatabaseProperties();
         databaseProperties.setDriver("org.postgresql.Driver");
