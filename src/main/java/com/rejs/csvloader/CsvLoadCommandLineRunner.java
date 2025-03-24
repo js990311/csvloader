@@ -18,12 +18,20 @@ public class CsvLoadCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if(args.length < 2){
-            throw new IllegalArgumentException("we need 2 parameter");
+        String ymlPath = null;
+        String csvPath = null;
+
+        for (int i = 0; i < args.length; i++) {
+            if ("-y".equals(args[i]) && i + 1 < args.length) {
+                ymlPath = args[++i];
+            } else if ("-c".equals(args[i]) && i + 1 < args.length) {
+                csvPath = args[++i];
+            }
         }
 
-        String ymlPath = args[0];
-        String csvPath = args[1];
+        if(ymlPath == null || csvPath == null){
+            throw new IllegalArgumentException("we need 2 parameter");
+        }
 
         ImportProperties properties = loader.loadProperties(ymlPath);
         Resource data = fao.load(csvPath);

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 /**
  * CsvLoadCommandLineRunner 빈 등록
  */
+@Profile("loadcsv")
 @Configuration
 public class AbstractCsvLoadCommandLineRunnerConfiguration extends AbstractCsvLoadConfiguration{
 

@@ -64,3 +64,17 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+task loadCsv(type: JavaExec) {
+	group = "loadcsv"
+	description = "load csv"
+
+	mainClass = "com.rejs.csvloader.CsvloaderApplication"
+
+	// CP 설정
+	classpath = sourceSets.main.runtimeClasspath
+
+	args "-y", "ignore/library.yml", "-c", "ignore/library.csv"
+	args "--spring.main.web-application-type=NONE"
+	args "--spring.profiles.active=loadcsv"
+}
