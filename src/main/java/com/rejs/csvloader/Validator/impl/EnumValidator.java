@@ -25,7 +25,8 @@ public class EnumValidator implements CsvColumnValidator {
             }else {
                 throw new InvalidCsvColumnException("there is no enum mapper");
             }
-
+        } catch (NullPointerException ex){
+            throw new InvalidCsvColumnException("there is no enum mapper");
         }catch (RuntimeException ex){
             throw new InvalidCsvColumnException(ex);
         }

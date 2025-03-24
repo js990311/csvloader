@@ -12,11 +12,13 @@ public class LongValidatior implements CsvColumnValidator {
     public Object validate(String column, ColumnProperty property) {
         try {
             long number = Long.parseLong(column);
-            if(property.getConstraints().getMax() != null && number>property.getConstraints().getMax()){
-                throw new InvalidCsvColumnException("invalid number range");
-            }
-            if(property.getConstraints().getMin() != null && number<property.getConstraints().getMin()){
-                throw new InvalidCsvColumnException("invalid number range");
+            if(property.getConstraints() != null) {
+                if(property.getConstraints().getMax() != null && number>property.getConstraints().getMax()){
+                    throw new InvalidCsvColumnException("invalid number range");
+                }
+                if(property.getConstraints().getMin() != null && number<property.getConstraints().getMin()){
+                    throw new InvalidCsvColumnException("invalid number range");
+                }
             }
             return number;
         }catch (NumberFormatException e){
