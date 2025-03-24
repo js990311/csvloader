@@ -41,7 +41,7 @@ public class JdbcBatchInsertRepository {
                     ;
                     for(int insertIndex : insertIndexes){
                         if(data[idx] == null){
-                            ps.setString(insertIndex+1, null);
+                            ps.setString(insertIndex, null);
                         }else {
                             String type = column.getType();
                             JdbcTypeSetter setter = getSetter(type);
