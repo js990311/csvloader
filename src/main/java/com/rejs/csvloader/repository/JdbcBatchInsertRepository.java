@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,12 +34,18 @@ public class JdbcBatchInsertRepository {
                 Object[] data = datas.get(i);
                 int idx = 0;
                 for(ColumnProperty column : columns){
-                    if(data[idx] == null){
-                        ps.setString(idx+1, null);
-                    }else {
-                        String type = column.getType();
-                        JdbcTypeSetter setter = getSetter(type);
-                        setter.set(ps, idx+1, data[idx]);
+                    List<Integer> insertIndexes = column.getInsertIndexes() != null
+                        ? column.getInsertIndexes()
+                        : List.of(idx + 1)
+                    ;
+                    for(int insertIndex : insertIndexes){
+                        if(data[idx] == null){
+                            ps.setString(insertIndex+1, null);
+                        }else {
+                            String type = column.getType();
+                            JdbcTypeSetter setter = getSetter(type);
+                            setter.set(ps, insertIndex+1, data[idx]);
+                        }
                     }
                     idx++;
                 }
