@@ -11,11 +11,14 @@ import java.util.List;
 @Setter
 public class WorkProperty {
     private String tableName;
+    private List<ColumnProperty> columns;
     /**
      * InsertQuery를 별도 생성하지 않고 수동으로 지정하는 경우
      */
     private String insertQuery;
-    private String beforeExecuteQuery;
-    private String afterExecuteQuery;
-    private List<ColumnProperty> columns;
+    /**
+     * Insert 쿼리 이외에도 단순 쿼리를 실행할 필요가 있는 경우
+     */
+    private String executeQuery;
+
 }

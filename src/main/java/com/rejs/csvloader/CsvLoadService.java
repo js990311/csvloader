@@ -27,13 +27,19 @@ public class CsvLoadService {
         JdbcTemplate jdbcTemplate = jdbcTemplateProvider.createJdbcTemplate(properties.getDatabase());
 
         for(WorkProperty work : properties.getWorks()){
-            String query = insertQueryBuilder.buildInsertQuery(work);
+            if(work.getExecuteQuery() != null){
+                /* execute 쿼리가 있다면 해당 쿼리만 실행 */
+                jdbcTemplate.execute(work.getExecuteQuery());
+            }else {
+                String query = insertQueryBuilder.buildInsertQuery(work);
 
-            List<ColumnProperty> columns = work.getColumns();
-            CsvColumnValidationResult result = validateService.validate(columns, data);
+                List<ColumnProperty> columns = work.getColumns();
+                CsvColumnValidationResult result = validateService.validate(columns, data);
 
-            List<Object[]> datas = result.getValidDatas();
-            jdbcBatchInsertRepository.batchInsert(jdbcTemplate, query, datas, columns);
+                List<Object[]> datas = result.getValidDatas();
+                jdbcBatchInsertRepository.batchInsert(jdbcTemplate, query, datas, columns);
+
+            }
         }
     }
 }

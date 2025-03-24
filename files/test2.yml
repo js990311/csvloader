@@ -1,6 +1,6 @@
 works:
-  - tableName: "test_points"
-    beforeExecuteQuery: >
+  - executeQuery: "drop table if exists test_points"
+  - executeQuery:
       CREATE TABLE test_points (
         name VARCHAR(100),
         longitude DOUBLE PRECISION,
@@ -8,6 +8,7 @@ works:
         lng DOUBLE PRECISION,
         lat DOUBLE PRECISION
       );
+  - tableName: "test_points"
     insertQuery: "INSERT test_points(name, longitude, latitude, lng, lat) VALUES (?,?,?,?,?)"
     columns:
       - name: "name"
