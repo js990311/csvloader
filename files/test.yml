@@ -21,6 +21,7 @@ works:
       - name: "test_enum"
         csvIndex: 4
         type: String
+        validationType: Enum
         constraints:
           enums:
             mappings:

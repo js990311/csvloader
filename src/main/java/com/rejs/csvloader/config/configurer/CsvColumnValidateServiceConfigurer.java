@@ -26,7 +26,8 @@ public class CsvColumnValidateServiceConfigurer implements CsvLoadConfigurer{
                 new IntegerValidator(),
                 new StringValidator(),
                 new DoubleValidator(),
-                new EnumValidator()
+                new EnumValidator(),
+                new ConstantValidator()
         ));
         return this;
     }

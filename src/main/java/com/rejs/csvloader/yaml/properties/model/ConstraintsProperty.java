@@ -12,4 +12,5 @@ public class ConstraintsProperty {
     private Long min;
     private Long max;
     private EnumProperty enums;
+    private String constant;
 }
