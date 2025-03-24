@@ -7,6 +7,8 @@ import com.rejs.csvloader.yaml.properties.config.ImportProperties;
 import com.rejs.csvloader.yaml.properties.model.WorkProperty;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ImportPropertiesLoaderTest {
@@ -48,6 +50,17 @@ class ImportPropertiesLoaderTest {
         assertEquals("myuser", properties.getDatabase().getUsername());
         assertEquals("secret", properties.getDatabase().getPassword());
         assertEquals("org.postgresql.Driver", properties.getDatabase().getDriver());
+    }
+
+    @Test
+    void loadPropertiesWithInsertQuery() {
+        ImportProperties properties = importPropertiesLoader.loadProperties("test2.yml");
+        WorkProperty work = properties.getWorks().get(0);
+        assertNotNull(work.getInsertQuery());
+        assertEquals("INSERT test_points(name, longitude, latitude) VALUES (?,?,?)", work.getInsertQuery());
+
+        List<Integer> insertIndexes = work.getColumns().get(2).getInsertIndexes();
+        assertEquals(2, insertIndexes.size());
     }
 
     @Test

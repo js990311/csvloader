@@ -1,0 +1,23 @@
+works:
+  - tableName: "test_points"
+    insertQuery: "INSERT test_points(name, longitude, latitude) VALUES (?,?,?)"
+    columns:
+      - name: "name"
+        csvIndex: 0
+        insertIndexes: [1]
+        type: String
+        nullable: false
+      - name: "longitude"
+        csvIndex: 1
+        insertIndexes: [2, 4]
+        nullable: false
+      - name: "latitude"
+        csvIndex: 2
+        insertIndexes: [3, 5]
+        nullable: false
+
+database:
+  host: "jdbc:postgresql://localhost:5432/mydatabase"
+  username: "myuser"
+  password: "secret"
+  driver: "org.postgresql.Driver"
