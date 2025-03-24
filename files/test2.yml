@@ -1,5 +1,13 @@
 works:
   - tableName: "test_points"
+    beforeExecuteQuery: >
+      CREATE TABLE test_points (
+        name VARCHAR(100),
+        longitude DOUBLE PRECISION,
+        latitude DOUBLE PRECISION,
+        lng DOUBLE PRECISION,
+        lat DOUBLE PRECISION
+      );
     insertQuery: "INSERT test_points(name, longitude, latitude, lng, lat) VALUES (?,?,?,?,?)"
     columns:
       - name: "name"
@@ -9,10 +17,12 @@ works:
         nullable: false
       - name: "longitude"
         csvIndex: 1
+        type: Double
         insertIndexes: [2, 4]
         nullable: false
       - name: "latitude"
         csvIndex: 2
+        type: Double
         insertIndexes: [3, 5]
         nullable: false
 
